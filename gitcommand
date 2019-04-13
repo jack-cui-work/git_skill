@@ -1,0 +1,40 @@
+#####################################################################
+######################     git本地管理   ############################
+#####################################################################
+git add file.txt                                 #添加文件到暂存区
+git commit file.txt -m 'commit file to registry' #提交文件到版本库，并指定注释
+git log                                          #多行显示git提交版本日志
+git log --pretty=oneline                         #单行概要显示版本信息
+git reset --hard HEAD^                           #将当前缓存区清空并回退一个版本一个'^'符号表示回退一个版本，两个表示回退两个，回退100个版本表示为'HEAD~100',注意HEAD指针是指向当前版本的。
+git reset --hard COMMIT_ID                       #跳到指定版本
+git reflog                                       #显示最近执行的git命令历史日志
+git diff HEAD -- readme.txt                      #命令可以查看工作区和版本库里面最新版本的区别：
+git checkout -- readme.txt                       #可以丢弃工作区的修改：
+git reset HEAD readme.txt                        #丢弃缓存区add添加的部分修改，并回退至当前未修改版本。
+git rm test.txt                                  #删除版本库中的文件
+git commit -m "remove test.txt"                  #删除文件后提交删除
+git checkout -- test.txt                         #把误删的文件恢复到最新版本
+
+
+#####################################################################
+######################     git远程库     ############################
+#####################################################################
+
+git remote add orign git@github.com:jack-cui-work/git_src.git #在本地库目录执行该命令，为远程库与本地库做关联。
+git push -u origin master                                     #把当前分支master推送至远程，由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git.
+
+git clone git@github.com:michaelliao/gitskills.git             #从远程克隆库到本地。
+
+#####################################################################
+######################     git分支管理    ###########################
+#####################################################################
+
+git checkout -b dev  # 创建并切换分支。
+git branch dev       # 创建分支，分支名为dev
+git checkout dev     # 切换分支到dev
+git branch           # 显示当前所有分支，当前分支为*
+
+git merge dev        # 当前分支是master，将dev分支合并到master，merge命令用于合并指定分支到当前分支。
+git branch -d dev    # 合并完分支后可以把分支删掉，当前执行命令为删除dev分支。
+
+
